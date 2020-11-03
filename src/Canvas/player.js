@@ -127,7 +127,7 @@ export class Player {
 
     drawOnContext(ctx, x, y, width, height) {
         if (this._drawingCanvas && this._videoItem) {
-            ctx.drawImage(this._drawingCanvas, x, y, width || this._videoItem.videoSize.width, height || this._videoItem.videoSize.height);
+            try { ctx.drawImage(this._drawingCanvas, x, y, width || this._videoItem.videoSize.width, height || this._videoItem.videoSize.height); } catch (error) {}
         }
     }
 

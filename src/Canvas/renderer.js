@@ -195,8 +195,8 @@ export class Renderer {
                 const concatTransform = this._owner._dynamicImageTransform[sprite.imageKey];
                 ctx.transform(concatTransform[0], concatTransform[1], concatTransform[2], concatTransform[3], concatTransform[4], concatTransform[5]);
             }
-            if (targetWidth && targetHeight) { ctx.drawImage(imgTag, 0, 0, targetWidth, targetHeight); }
-            else { ctx.drawImage(imgTag, 0, 0); }
+            if (targetWidth && targetHeight) { try { ctx.drawImage(imgTag, 0, 0, targetWidth, targetHeight); } catch (error) {}}
+            else { try { ctx.drawImage(imgTag, 0, 0); } catch (error) {}}
             if (this._owner._dynamicImageTransform[sprite.imageKey] !== undefined) {
                 ctx.restore();
             }
@@ -212,7 +212,7 @@ export class Renderer {
                 const concatTransform = this._owner._dynamicImageTransform[sprite.imageKey];
                 ctx.transform(concatTransform[0], concatTransform[1], concatTransform[2], concatTransform[3], concatTransform[4], concatTransform[5]);
             }
-            ctx.drawImage(src, 0, 0);
+            try { ctx.drawImage(src, 0, 0); } catch (error) {}
             if (this._owner._dynamicImageTransform[sprite.imageKey] !== undefined) {
                 ctx.restore();
             }
